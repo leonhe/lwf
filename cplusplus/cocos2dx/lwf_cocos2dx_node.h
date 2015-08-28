@@ -72,7 +72,7 @@ public:
 	bool isDestructed() const {return _destructed;}
 
     bool initWithLWFFile(const std::string &filename, LWFNodeHandlers h,
-		void *l = 0, LWF::TextureLoadHandler textureLoadHandler = 0);
+		void *l = 0, LWF::TextureLoadHandler textureLoadHandler = nullptr);
 
 	virtual LWF::shared_ptr<LWF::LWF> attachLWF(
 		const char *pszFilename, const char *pszTarget,
