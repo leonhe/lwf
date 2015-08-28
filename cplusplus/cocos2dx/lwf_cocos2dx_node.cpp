@@ -137,13 +137,19 @@ bool LWFNode::initWithLWFFile(const string &path, LWFNodeHandlers h,
 		return false;
 	}
 
-	setContentSize(Size(0, 0));
-	setVertexRect(Rect(0, 0, 0, 0));
-
+	
 	shared_ptr<LWFRendererFactory> factory =
 		make_shared<LWFRendererFactory>(this, basePath);
 	lwf = make_shared<class LWF>(data, factory, l);
 	lwf->lwfLoader = LWFLoader(this, l);
+	
+	float width = lwf->width;
+	float height = lwf->height;
+	lwf->FitForHeight(width,height);
+	setContentSize(Size(width, height));
+	setVertexRect(Rect(0, 0, width, height));
+	
+	
 
 	_nodeHandlers = h;
 	_textureLoadHandler = textureLoadHandler;
